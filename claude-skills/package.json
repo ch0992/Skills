@@ -1,0 +1,14 @@
+{
+  "name": "@yeonggyuchoi/claude-skills",
+  "version": "1.0.0",
+  "description": "Claude Code skills installer",
+  "bin": {
+    "claude-skills": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": ["claude", "claude-code", "skills", "ai"],
+  "author": "yeonggyuchoi",
+  "license": "MIT"
+}

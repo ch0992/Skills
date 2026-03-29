@@ -1,0 +1,14 @@
+{
+  "name": "@yeonggyuchoi/antigravity-skills",
+  "version": "1.0.0",
+  "description": "Antigravity agent skills installer",
+  "bin": {
+    "antigravity-skills": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": ["antigravity", "skills", "ai", "agent"],
+  "author": "yeonggyuchoi",
+  "license": "MIT"
+}

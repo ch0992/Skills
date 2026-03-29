@@ -1,0 +1,11 @@
+{
+  "name": "@ch0992/skills",
+  "version": "1.0.0",
+  "description": "Claude Code & Antigravity 범용 스킬 모음",
+  "bin": {
+    "skills": "./bin/cli.js"
+  },
+  "keywords": ["claude", "antigravity", "skills", "ai"],
+  "author": "ch0992",
+  "license": "MIT"
+}
