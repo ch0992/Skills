@@ -50,11 +50,15 @@ npx github:ch0992/Skills claude uninstall --skill <name>
 
 ```
 Skills/
+├── CLAUDE.md            ← Claude 루트 진입점
+├── ANTIGRAVITY.md       ← Antigravity 루트 진입점
 ├── claude-skills/       Claude Code 전용 스킬
+│   ├── CLAUDE.md        ← claude-skills 작성 표준
 │   └── skills/
 │       ├── antigravity-workflow/
 │       └── devlog-writer/
 └── antigravity-skills/  Antigravity 전용 스킬
+    ├── ANTIGRAVITY.md   ← antigravity-skills 작성 표준
     └── skills/
         ├── hugo-blog-writer/
         ├── hugo-documentation/
@@ -95,6 +99,8 @@ Antigravity 에이전트에서 동작하는 범용 스킬 모음입니다. `~/.a
 ## 스킬 추가 방법
 
 1. `claude-skills/skills/` 또는 `antigravity-skills/skills/`에 새 디렉토리 추가
-2. `SKILL.md` 작성
+2. `SKILL.md` 작성 — 작성 표준 참조:
+   - Claude 스킬: `claude-skills/CLAUDE.md`
+   - Antigravity 스킬: `antigravity-skills/ANTIGRAVITY.md`
 3. GitHub push
 4. `npx github:ch0992/Skills install` 재실행으로 반영

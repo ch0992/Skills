@@ -39,6 +39,10 @@ npx github:yeonggyuchoi-usa/antigravity-skills uninstall
 npx github:yeonggyuchoi-usa/antigravity-skills uninstall --skill <name>
 ```
 
+## 스킬 작성 표준
+
+새 스킬 작성 시 `ANTIGRAVITY.md` 참조.
+
 ---
 
 ## 스킬 목록
