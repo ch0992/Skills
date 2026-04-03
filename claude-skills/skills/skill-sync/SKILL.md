@@ -107,11 +107,13 @@ diff <(ls ~/workspace/Nsoft/skills/antigravity-skills/skills | sort) \
 
 ### Step 2: 공통 스킬 rsync
 
+`devlog-writer`와 `next-session-writer`는 LinkNest 전용 버전으로 별도 관리하므로 rsync 대상에서 제외한다.
+
 ```bash
-COMMON_CLAUDE=(antigravity-workflow devlog-writer github-issue-handler next-session-writer)
+RSYNC_CLAUDE=(antigravity-workflow github-issue-handler)
 COMMON_ANTI=(hugo-blog-writer hugo-documentation hugo-env-setup hugo-report-writer)
 
-for skill in "${COMMON_CLAUDE[@]}"; do
+for skill in "${RSYNC_CLAUDE[@]}"; do
   rsync -a --delete \
     ~/workspace/Nsoft/skills/claude-skills/skills/$skill/ \
     ~/workspace/LinkNest/skills/claude-skills/skills/$skill/
@@ -126,16 +128,24 @@ for skill in "${COMMON_ANTI[@]}"; do
 done
 ```
 
-### Step 3: 경로 하드코딩 경고 확인
+### Step 3: Nsoft 전용 참조 치환
 
-동기화된 스킬 중 Scanio 전용 경로가 박혀있는 스킬이 있으면 사용자에게 알린다.
+rsync된 스킬(`antigravity-workflow`, `github-issue-handler`)의 Nsoft 참조를 LinkNest로 교체한다.
 
 ```bash
-grep -rl "workspace/Nsoft\|NSoft-America-Inc\|yeonggyuchoi-usa\|noffice\|NOFFICE" \
-  ~/workspace/LinkNest/skills/claude-skills/skills/ 2>/dev/null
-```
+RSYNC_CLAUDE=(antigravity-workflow github-issue-handler)
 
-발견 시: "다음 스킬에 Scanio 전용 경로가 포함되어 있습니다. LinkNest에서 실제로 사용할 때 동작이 다를 수 있습니다: [목록]"
+for skill in "${RSYNC_CLAUDE[@]}"; do
+  TARGET=~/workspace/LinkNest/skills/claude-skills/skills/$skill/SKILL.md
+  sed -i '' \
+    -e 's/NSoft-America-Inc/ch0992/g' \
+    -e 's/repo=`scanio`/repo=`LinkNest`/g' \
+    -e 's/repo="scanio"/repo="LinkNest"/g' \
+    -e 's/Scanio 프로젝트/LinkNest 프로젝트/g' \
+    "$TARGET"
+  echo "🔄 [치환] $skill"
+done
+```
 
 ### Step 4: 변경사항 확인 후 커밋 & 푸시
 

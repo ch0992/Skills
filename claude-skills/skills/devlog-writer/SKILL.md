@@ -1,27 +1,25 @@
 ---
 name: devlog-writer
 description: >
-  Scanio 프로젝트 devlog 작성 스킬.
+  LinkNest 프로젝트 devlog 작성 스킬.
   사용자가 "devlog 정리", "devlog 써줘", "일지 정리", "오늘 일지" 등을 언급할 때 사용한다.
-  오늘 날짜의 devlog 파일을 docs/6.devlog/YYYY-MM-DD.md 형식으로 작성한다.
+  오늘 날짜의 devlog 파일을 docs/devlog/YYYY-MM-DD.md 형식으로 작성한다.
 ---
 
 # Devlog Writer
 
-Scanio 프로젝트의 개발 일지를 작성하는 스킬.
+LinkNest 프로젝트의 개발 일지를 작성하는 스킬.
 
 ## 파일 위치
 
-```
-/Users/yg/workspace/Nsoft/scanio/docs/6.devlog/YYYY-MM-DD.md
-```
+현재 작업 중인 프로젝트 루트의 `docs/devlog/YYYY-MM-DD.md`.
+경로가 없으면 생성한다.
 
 ## 작성 절차
 
 1. **기존 포맷 확인**: 가장 최근 devlog 파일 1개를 읽어 포맷 파악
 2. **작업 내역 수집** (병렬 실행):
-   - `git log --oneline` — 오늘 머지된 커밋 확인
-   - `tasks/reports/` — 오늘 날짜 리포트 파일 목록 확인
+   - `git log --oneline` — 오늘 커밋 확인
    - `gh issue list --state closed` — 오늘 닫힌 이슈 목록 확인
 3. **파일 작성**: 아래 형식에 맞게 작성
 
@@ -76,7 +74,6 @@ Scanio 프로젝트의 개발 일지를 작성하는 스킬.
 
 ## 프로젝트 참고
 
-- **GitHub**: owner=`NSoft-America-Inc`, repo=`scanio`
-- **devlog 위치**: `docs/6.devlog/`
-- **리포트 위치**: `tasks/reports/`
+- **GitHub**: owner=`ch0992`, repo=`LinkNest`
+- **devlog 위치**: `docs/devlog/`
 - **현재 날짜**: 항상 context의 currentDate 사용
