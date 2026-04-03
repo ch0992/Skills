@@ -2,10 +2,9 @@
 name: skill-sync
 description: >
   Nsoft(Scanio)와 LinkNest 간 공통 스킬을 동기화하는 스킬.
-  사용자가 "스킬 동기화", "스킬 마이그레이션", "LinkNest에 스킬 업데이트",
-  "skill sync", "스킬 싱크", "스킬 복사", "스킬 상태 확인" 등을 언급할 때
-  반드시 이 스킬을 사용한다. Nsoft에서 개발된 범용 스킬을 LinkNest로 복사하고
-  GitHub에 푸시한다.
+  사용자가 명시적으로 "스킬 동기화", "스킬 싱크", "LinkNest에 스킬 업데이트",
+  "skill sync", "스킬 마이그레이션", "새 스킬 LinkNest에 반영" 등을 언급할 때만
+  사용한다. 프로젝트 전환이나 다른 작업 도중에는 자동으로 트리거하지 않는다.
 ---
 
 # Skill Sync
@@ -52,6 +51,41 @@ Nsoft(Scanio)에서 개발된 공통 스킬을 LinkNest로 동기화한다.
 |--|--|--|
 | **Nsoft** | `~/workspace/Nsoft/skills/claude-skills/skills/` | `~/workspace/Nsoft/skills/antigravity-skills/skills/` |
 | **LinkNest** | `~/workspace/LinkNest/skills/claude-skills/skills/` | `~/workspace/LinkNest/skills/antigravity-skills/skills/` |
+
+---
+
+## 스킬 업데이트 순서
+
+### Case A: 신규 스킬 생성 (Nsoft에서)
+
+```
+1. Nsoft/skills/claude-skills/skills/<name>/SKILL.md 작성
+2. 분류 결정 → 공통 or Scanio 전용
+3. 공통이면 → 이 파일의 "공통 스킬 목록"에 추가
+4. Nsoft skills 커밋 & 푸시
+5. skill-sync 실행 → LinkNest 반영 + 푸시
+6. Claude Code 재시작
+```
+
+### Case B: 기존 공통 스킬 수정 (Nsoft에서)
+
+```
+1. Nsoft/skills/claude-skills/skills/<name>/SKILL.md 수정
+2. Nsoft skills 커밋 & 푸시
+3. skill-sync 실행 → LinkNest 자동 반영
+```
+
+### Case C: 스킬 삭제
+
+```
+1. Nsoft/skills에서 스킬 디렉토리 삭제
+2. 이 파일의 분류 목록에서 제거
+3. Nsoft skills 커밋 & 푸시
+4. LinkNest/skills에서 동일 디렉토리 수동 삭제
+5. LinkNest skills 커밋 & 푸시
+```
+
+> rsync는 추가/수정만 처리하고 삭제는 수동 처리가 필요하므로 Case D는 항상 수동이다.
 
 ---
 
